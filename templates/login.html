@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+   <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-grid.css.css">
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/bootstrap.js"></script>
+    <style>
+        .juzhong{
+          text-align: center;
+        }
+    </style>
+	  
+    
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">家庭医生</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="index">首页<span class="sr-only">(current)</span></a>
+            </li>
+            {#            {% endifequal %}#}
+            {#            {% ifnotequal null request.user %}#}
+            {% if 'tel'  not in  request.session.keys %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="login">请登录</a>
+                </li>
+            {% else %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        {{ request.session.userName }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {#                     <a class="dropdown-item" href="login">登录</a>#}
+                        {#                     <a class="dropdown-item" href="register">注册</a>#}
+                        <a class="dropdown-item" href="#">健康档案</a>
+                        <a class="dropdown-item" href="#">饮食推荐</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="logout">退出登录</a>
+                    </div>
+                </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">常见药物</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">常见病症</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">关于</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    更多
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">寻求帮助</a>
+                    <a class="dropdown-item" href="#">注意事项</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">more</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1"
+                   aria-disabled="true">希望您通过“家庭医生”，得到最准确又简洁的诊断。祝您健康！</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="请输入" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+        </form>
+    </div>
+</nav>
+  <div class="container juzhong">
+    <div class="row justify-content-md-center">
+      <div class="col-md-4 col-md-offset-4">
+        <form action="login" method="post">
+            {% csrf_token %}
+          <span>
+{#            <img class="mb-4" src="img/blog.png" alt="" width="15%" height="15%">#}
+            <h1 class="juzhong">家庭医生</h1>
+          </span>
+          <h1 class="h4 mb-3 font-weight-normal juzhong">请登录</h1>
+          <label for="inputEmail" class="sr-only">电话</label><br>
+  
+          <input type="text" id="inputEmail" name="tel" class="form-control" placeholder="请输入电话号码" required
+            autofocus>
+          <label for="inputPassword" class="sr-only">密码</label>
+          <input type="password" id="inputPassword" name="password" class="form-control" placeholder="请输入密码" required>
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> 记住我
+            </label>
+          </div>
+          <input class="btn btn-lg btn-primary btn-block" type="submit" value="登录"><br><br>
+          <span>没有账号?<a href="register.html">点击注册</a></span>
+        </form><br>
+        <p class="mt-5 mb-3 text-muted"></p>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="container">
+    <div class="row justify-content-md-center">
+      <form>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-md-4 col-form-label">电话</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control-plaintext" id="staticEmail" value="">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-md-4 col-form-label">密码</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword">
+          </div>
+        </div> -->
+      </form>
+    </div>
+  </div>
+
+
+    <!-- <div class="container-md">家庭医生 HOMELY DOCTOR</div>
+    <div class="navbar-nav-scroll">
+        <ul class="navbar-nav bd-navbar-nav flex-row">
+          <li class="nav-item">
+            <a class="nav-link " href="index.html" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Bootstrap');">首页</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="register.html" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">注册</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="login.html" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Examples');">登录</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="medicine.html" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Icons');" target="_blank" rel="noopener">常见药物</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sympotom.html" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Themes');" target="_blank" rel="noopener">常见病症</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ps_health.html" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Expo');" target="_blank" rel="noopener">我的健康档案</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');" target="_blank" rel="noopener">关于我们</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="https://www.sasscss.com/" target="_blank" rel="noopener">Sass</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.webpackjs.com/" target="_blank" rel="noopener">Webpack</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.jekyll.com.cn/" target="_blank" rel="noopener">Jekyll</a>
+          </li> -->
+        <!-- </ul>
+      </div> -->
+</body>
+</html>
