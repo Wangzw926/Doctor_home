@@ -13,6 +13,9 @@
         .juzhong{
           text-align: center;
         }
+        #loading{
+            display: none;
+        }
     </style>
 	  
     
@@ -106,7 +109,10 @@
               <input type="checkbox" value="remember-me"> 记住我
             </label>
           </div>
-          <input class="btn btn-lg btn-primary btn-block" type="submit" value="登录"><br><br>
+            <div class="spinner-border" role="status" id="loading">
+                <span class="sr-only">Loading...</span>
+            </div>
+          <input class="btn btn-lg btn-primary btn-block" type="submit" onclick="logins()" value="登录"><br><br>
           <span>没有账号?<a href="register.html">点击注册</a></span>
         </form><br>
         <p class="mt-5 mb-3 text-muted"></p>
@@ -169,4 +175,9 @@
         <!-- </ul>
       </div> -->
 </body>
+<script>
+    function logins() {
+        $("#loading").attr("style","display:show()")
+    }
+</script>
 </html>
