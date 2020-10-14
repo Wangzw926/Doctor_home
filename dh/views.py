@@ -49,7 +49,26 @@ def login(request):
 
         #login(request, user)
     return redirect('/index')
+#test
+def test(request):
+    return render(request, 'user_basic_infor.html', locals())
+#健康档案
+def infor(request):
+    return render(request, 'infor.html', locals())
 #退出登录
 def logout(request):
     request.session.flush()
     return redirect('/index')
+#加载个人信息
+def user_basic_infor(request):
+    user = models.User.objects.get(tel=request.session['tel'])
+    return render(request, 'user_basic_infor.html', locals())
+
+#咨询历史
+def consulting_history(request):
+    #在这里查询咨询历史带到前端界面
+    return render(request, 'consulting_history.html', locals())
+
+#修改个人信息
+def modifyInfor(request):
+    return render(request, 'modifyInfor.html', locals())

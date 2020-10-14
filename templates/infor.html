@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康档案</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-grid.css.css">
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/bootstrap.js"></script>
+    <script src="../static/js/test.js"></script>
+
+    <style>
+        #nav{
+            float: left;
+            margin-left: 1px;
+            width: 100%;
+            height: 100%;
+        }
+        .formx{
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+        }
+        iframe{
+            width: 100%;
+            border: 0;
+            height: 90%;
+        }
+    </style>
+</head>
+
+
+<body>
+ <script type="text/javascript">
+        $(document).ready(function () {
+            $("#p1").trigger("click");
+        });
+    </script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">微智疗</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="index">首页<span class="sr-only">(current)</span></a>
+            </li>
+            {#            {% endifequal %}#}
+            {#            {% ifnotequal null request.user %}#}
+            {% if 'tel'  not in  request.session.keys %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="login">请登录</a>
+                </li>
+            {% else %}
+                <li class="nav-item dropdown">
+
+
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        {{ request.session.userName }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {#                     <a class="dropdown-item" href="login">登录</a>#}
+                        {#                     <a class="dropdown-item" href="register">注册</a>#}
+                        <a class="dropdown-item" href="#">健康档案</a>
+                        <a class="dropdown-item" href="#">饮食推荐</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="logout">退出登录</a>
+                    </div>
+                </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">常见药物</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">常见病症</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">关于</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    更多
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">寻求帮助</a>
+                    <a class="dropdown-item" href="#">注意事项</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">more</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1"
+                   aria-disabled="true">希望您通过“微智疗”，得到最准确又简洁的诊断。祝您健康！</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="请输入" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+        </form>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <img src="../static/imgs/head/default_male.JPG" alt="..." class="rounded-circle rounded-sm" width="80%"
+                 style="margin-top: 20px">
+            <form action="#" method="post">
+                <div class="form-group">
+                    <input type="file" class="form-control-file" name="head" style="font-family: 楷体" placeholder="更换头像">
+                </div>
+                <div class="list-group" style="font-family: 楷体">
+                    <a  class="list-group-item list-group-item-action" id="p1" onclick="changepage(id)">基本情况</a>
+                    <a  class="list-group-item list-group-item-action" id="p2" onclick="changepage(id)">近期咨询</a>
+                    <a  class="list-group-item list-group-item-action" onclick="">咨询史</a>
+                    <a  class="list-group-item list-group-item-action" onclick="">电子病历</a>
+
+                </div>
+            </form>
+        </div>
+{#        <div class="col-md-9" style="margin-top: 120px">#}
+{#            <h2>这里是个人信息</h2>#}
+{##}
+{#        </div>#}
+
+            <div class="col-md-9">
+                <div id="nav">
+                    <form action="" class="formx" id="form1">
+                        <iframe src="user_basic_infor" scrolling="no" style="height: 1000px">
+
+                        </iframe>
+                    </form>
+                    <form action="" class="formx" id="form2">
+                        <iframe src="consulting_history" scrolling="no" style="height: 1000px" >
+
+                        </iframe>
+                    </form>
+                    <form action="" class="formx" id="form3">
+                        <iframe src="" scrolling="no" style="height: 1000px" >
+
+                        </iframe>
+                    </form>
+                    <form action="" class="formx" id="form4">
+                        <iframe src="" scrolling="no" style="height: 1000px" >
+
+                        </iframe>
+                    </form>
+
+                </div>
+            </div>
+    </div>
+{#    <div class="row">#}
+{##}
+{#        <div class="list-group">#}
+{#            <a href="#" class="list-group-item list-group-item-action" id="p1" onclick="changepage(id)">基本情况</a>#}
+{#            <a href="#" class="list-group-item list-group-item-action" onclick="">近期咨询</a>#}
+{#            <a href="#" class="list-group-item list-group-item-action" onclick="">咨询史</a>#}
+{#            <a href="#" class="list-group-item list-group-item-action" onclick="">电子病历</a>#}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
+</div>
+</body>
+</html>
