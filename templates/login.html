@@ -2,27 +2,27 @@
 {% load static %}
 <html lang="en">
 <head>
+    <!-- 设置编码格式 -->
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 标题 -->
     <title>登录</title>
    <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/bootstrap-grid.css.css">
+{#    <link rel="stylesheet" href="../static/css/bootstrap-grid.css.css">#}
     <script src="../static/js/jquery.js"></script>
     <script src="../static/js/bootstrap.js"></script>
     <style>
         .juzhong{
           text-align: center;
         }
-        #loading{
-            display: none;
-        }
     </style>
 	  
     
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">家庭医生</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">微智疗</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,10 +37,12 @@
             {#            {% ifnotequal null request.user %}#}
             {% if 'tel'  not in  request.session.keys %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="login">请登录</a>
+                    <a class="nav-link" href="/dh/login">请登录</a>
                 </li>
             {% else %}
                 <li class="nav-item dropdown">
+
+
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -49,7 +51,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {#                     <a class="dropdown-item" href="login">登录</a>#}
                         {#                     <a class="dropdown-item" href="register">注册</a>#}
-                        <a class="dropdown-item" href="#">健康档案</a>
+                        <a class="dropdown-item" href="infor">健康档案</a>
                         <a class="dropdown-item" href="#">饮食推荐</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout">退出登录</a>
@@ -57,10 +59,10 @@
                 </li>
             {% endif %}
             <li class="nav-item">
-                <a class="nav-link" href="#">常见药物</a>
+                <a class="nav-link" href="common_medicine">常见药物</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">常见病症</a>
+                <a class="nav-link" href="common_disease">常见病症</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">关于</a>
@@ -79,11 +81,12 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1"
-                   aria-disabled="true">希望您通过“家庭医生”，得到最准确又简洁的诊断。祝您健康！</a>
+                   aria-disabled="true">希望您通过“微智疗”，得到最准确又简洁的诊断。祝您健康！</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="请输入" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" method="post" action="search_medicine">
+            {% csrf_token %}
+            药物查询&nbsp&nbsp&nbsp<input class="form-control mr-sm-2" type="search" placeholder="请输入" aria-label="Search" name="user_input_content">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
         </form>
     </div>
@@ -94,10 +97,10 @@
         <form action="login" method="post">
             {% csrf_token %}
           <span>
-{#            <img class="mb-4" src="img/blog.png" alt="" width="15%" height="15%">#}
-            <h1 class="juzhong">家庭医生</h1>
+            <h1 class="juzhong">微智疗</h1>
           </span>
           <h1 class="h4 mb-3 font-weight-normal juzhong">请登录</h1>
+            {{ error }}
           <label for="inputEmail" class="sr-only">电话</label><br>
   
           <input type="text" id="inputEmail" name="tel" class="form-control" placeholder="请输入电话号码" required
@@ -109,11 +112,8 @@
               <input type="checkbox" value="remember-me"> 记住我
             </label>
           </div>
-            <div class="spinner-border" role="status" id="loading">
-                <span class="sr-only">Loading...</span>
-            </div>
-          <input class="btn btn-lg btn-primary btn-block" type="submit" onclick="logins()" value="登录"><br><br>
-          <span>没有账号?<a href="register.html">点击注册</a></span>
+          <input class="btn btn-lg btn-primary btn-block" type="submit" value="登录"><br><br>
+          <span>没有账号?<a href="register">点击注册</a></span>
         </form><br>
         <p class="mt-5 mb-3 text-muted"></p>
       </div>
@@ -175,9 +175,10 @@
         <!-- </ul>
       </div> -->
 </body>
-<script>
-    function logins() {
-        $("#loading").attr("style","display:show()")
-    }
-</script>
+
+<footer class="footer">
+    <div class="container" style="text-align: center;">
+        <p class="text-muted">&copy 北京信息科技大学信息管理学院信管1804LRL<br><br>Tel:13146171188</p>
+    </div>
+</footer>
 </html>

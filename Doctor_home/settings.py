@@ -25,11 +25,10 @@ SECRET_KEY = 'uywrl0gs5*s+(nah%&#j2$o1jn*&$t7yi6srpn&mnjy3!m-nxb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 ALLOWED_HOSTS = ['*']
 
 X_FRAME_OPTIONS = 'ALLOWALL'
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,12 +51,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#确定django项目的总路由
 ROOT_URLCONF = 'Doctor_home.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],#在这里指定自己的网页(models)路劲
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],#在这里指定自己的网页(models)路径
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,18 +80,24 @@ WSGI_APPLICATION = 'Doctor_home.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'dh1',
+        # 'USER': 'root',
+        # 'PASSWORD': 'wangzhengwu',
+        # 'HOST': '127.0.0.1',
+        # 'PORT': '3306',
         'NAME': 'dh',
         'USER': 'root',
-        'PASSWORD': 'wangzhengwu',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PASSWORD': 'wang123456@',
+        'HOST': 'cd-cdb-mb6zi4si.sql.tencentcdb.com',
+        'PORT': '62216',
+
     }
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
+#认证权限
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -111,9 +117,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+#LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
+
+#TIME_ZONE = 'UTC'
+#TIME_ZONE = 'Asia/Beijing'
 
 USE_I18N = True
 
@@ -122,7 +131,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Images)静态资源
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'

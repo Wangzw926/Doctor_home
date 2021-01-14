@@ -8,46 +8,77 @@
     <link rel="stylesheet" href="../static/css/bootstrap-grid.css.css">
     <script src="../static/js/jquery.js"></script>
     <script src="../static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap-icons.css">
     <style>
         #aaa div{
             margin: 20px;
         }
     </style>
+
 </head>
 <body>
     <div class="container">
         <div id="aaa" style="margin: 20px; font-family: 楷体">
             <h4>个人信息</h4>
-            <div class="row">
-                <div class="col-md-3">
-                    <form action="modifyInfor" method="post">
-                        <label for="userName">姓名:</label>
-                        <input class="input-group" value="{{ user.userName }}" readonly="true">
-                    </form>
-                </div>
 
-            </div>
-
-{#            <div><span onclick="modifyName()">姓名</span></div>#}
-{#            {{ request.session.trueName }}#}
-{#            <div>性别</div>#}
-{#            {{ request.session.gender }}#}
-{#            <div>出生日期</div>#}
-{#            {{ request.session.birth }}#}
-{#            <div>身份证号</div>#}
-{#            {{ request.session.idNum }}#}
-{#            <div>家族遗传史</div>#}
-{#            {{ request.session.famGenHis }}#}
-{#            <div>药物过敏史</div>#}
-{#            {{ request.session.drugAllergyHis }}#}
+{#            用户名{{ user.userName }}#}
+{#            <div>姓名:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp#}
+{#            {{ user.trueName }}</div>#}
+{#            <hr>#}
+{#            <div>性别:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp#}
+{#            {{ user.gender }}</div>#}
+{#            <hr>#}
+{#            <div>出生日期:&nbsp&nbsp&nbsp#}
+{#            {{ user.birth }}</div>#}
+{#            <hr>#}
+{#            <div>身份证号:&nbsp&nbsp&nbsp#}
+{#            {{ user.idNum }}</div>#}
+{#            <hr>#}
+{#            <div>家族遗传史:#}
+{#            {{ user.famGenHis }}</div>#}
+{#            <hr>#}
+{#            <div>药物过敏史:#}
+{#            {{ user.drugAllergyHis }}</div>#}
+{#            <hr>#}
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <th><i class="bi bi-person-fill"  style="font-size:40px;color:red;"></i></th>
+                    <td>Mark</td>
+                    <td>用户名:</td>
+                    <td>{{ user.userName }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>姓名:</td>
+                    <td>{{ user.trueName }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+{#        <div id="aaa" style="margin: 20px; font-family: 楷体">#}
+{#            <h4>个人信息</h4>#}
+{#            <form name="userBasicInfor" method="post" action="modifyInfor" id="userBasicInfor">#}
+{#                姓名：<input value="{{ user.userName }}" readonly="true" >#}
+{#                性别：<input>#}
+{#            </form>#}
+{#        </div>#}
 
-{#        <form>#}
-{#            <input formmethod="post" type="text" >#}
-{#        </form>#}
     </div>
-    <input type="button" value="修改" style="margin-left: 100px; color: #1b1e21; background-color: #95999c; font-family: 楷体; border-radius: 10px" href="modifyInfor">
-    <a href="modifyInfor.html">修改</a>
+    <input type="button" value="修改" style="margin-left: 100px; color: #1b1e21; background-color: #95999c; font-family: 楷体; border-radius: 10px" onclick="">
+    <a href="modifyInfor.html"></a>
 
 </body>
+
+<footer class="footer">
+    <div class="container" style="text-align: center;">
+        <p class="text-muted">&copy 北京信息科技大学信息管理学院信管1804LRL<br><br>Tel:13146171188</p>
+    </div>
+</footer>
 </html>

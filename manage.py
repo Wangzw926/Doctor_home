@@ -6,6 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
+    #把settings里设置的东西加到环境变量里
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Doctor_home.settings')
     try:
         from django.core.management import execute_from_command_line

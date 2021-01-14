@@ -17,7 +17,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">家庭医生</a>
+    <a class="navbar-brand" href="#">微智疗</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,10 +32,12 @@
             {#            {% ifnotequal null request.user %}#}
             {% if 'tel'  not in  request.session.keys %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="login">请登录</a>
+                    <a class="nav-link" href="/dh/login">请登录</a>
                 </li>
             {% else %}
                 <li class="nav-item dropdown">
+
+
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -44,7 +46,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {#                     <a class="dropdown-item" href="login">登录</a>#}
                         {#                     <a class="dropdown-item" href="register">注册</a>#}
-                        <a class="dropdown-item" href="#">健康档案</a>
+                        <a class="dropdown-item" href="infor">健康档案</a>
                         <a class="dropdown-item" href="#">饮食推荐</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout">退出登录</a>
@@ -52,10 +54,10 @@
                 </li>
             {% endif %}
             <li class="nav-item">
-                <a class="nav-link" href="#">常见药物</a>
+                <a class="nav-link" href="common_medicine">常见药物</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">常见病症</a>
+                <a class="nav-link" href="common_disease">常见病症</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">关于</a>
@@ -74,11 +76,12 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1"
-                   aria-disabled="true">希望您通过“家庭医生”，得到最准确又简洁的诊断。祝您健康！</a>
+                   aria-disabled="true">希望您通过“微智疗”，得到最准确又简洁的诊断。祝您健康！</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="请输入" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" method="post" action="search_medicine">
+            {% csrf_token %}
+            药物查询&nbsp&nbsp&nbsp<input class="form-control mr-sm-2" type="search" placeholder="请输入" aria-label="Search" name="user_input_content">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
         </form>
     </div>
@@ -92,29 +95,29 @@
             {% csrf_token %}
             <div class="form-group">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <label for="name">用户名(*):</label>
+                <label for="userName">用户名(*):</label>
                 <input type="text" name="userName" class="form-control" placeholder="请输入您的用户名">
             </div>
             <div class="form-group">
                 <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                <label for="password">密码(*):</label>
-                <input type="password" class="form-control" id="password" name="userPassword" placeholder="请输入您的密码">
+                <label for="userPassword">密码(*):</label>
+                <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="请输入您的密码">
             </div>
             <div class="form-group" style="text-align: left;">
                 <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-                <label for="sex">性别:</label>
+                <label for="userGender">性别:</label>
                 <input type="radio" name="userGender" checked value="男">男
                 <input type="radio" name="userGender" value="女">女<br>
             </div>
             <div class="form-group">
                 <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-                <label for="phone">出生日期(*):</label>
+                <label for="userBirthday">出生日期(*):</label>
                 <input type="date" class="form-control" id="userBirthday" name="userBirthday">
             </div>
             <div class="form-group">
                 <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
                 <label for="tel">电话(*):</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入您的手机号">
+                <input type="text" class="form-control" id="tel" name="tel" placeholder="请输入您的手机号">
             </div>
 
             <br>
@@ -124,4 +127,9 @@
     </div>
 </div>
 </body>
+<footer class="footer">
+    <div class="container" style="text-align: center;">
+        <p class="text-muted">&copy 北京信息科技大学信息管理学院信管1804LRL<br><br>Tel:13146171188</p>
+    </div>
+</footer>
 </html>
